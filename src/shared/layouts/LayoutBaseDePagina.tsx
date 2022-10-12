@@ -1,4 +1,4 @@
-import { Box, Typography, IconButton, Icon, Theme, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Typography, IconButton, Icon, Theme, useMediaQuery, useTheme, Toolbar } from '@mui/material';
 import { useDrawerContext } from '../contexts';
 
 interface ILayoutBaseDePaginaProps {
@@ -18,13 +18,8 @@ export const LayoutBaseDePagina: React.FC<ILayoutBaseDePaginaProps> = ({ childre
 
     return (
         <Box height='100%' display='flex' flexDirection='column' gap={1}>
+            <Toolbar></Toolbar>
             <Box padding={1} display='flex' gap={1} alignItems='center' height={theme.spacing(smDown ? 4 : mdDown ? 8 : 12)}>
-
-                {smDown &&
-                    <IconButton onClick={toggleDrawerOpen}>
-                        <Icon>menu</Icon>
-                    </IconButton>
-                }
 
                 <Typography 
                     variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'}

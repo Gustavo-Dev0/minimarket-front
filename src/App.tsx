@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import AppRoutes from './routes';
 import { MenuLateral } from './shared/components';
+import SideAndTopMenu from './shared/components/menu-lateral/SideAndTopMenu';
 import { AppThemeProvider, DrawerProvider } from './shared/contexts';
 
 function App() {
@@ -9,9 +10,9 @@ function App() {
     <AppThemeProvider>
       <DrawerProvider>
         <BrowserRouter>
-          <MenuLateral>
+          <SideAndTopMenu>
             <AppRoutes />
-          </MenuLateral>
+          </SideAndTopMenu>
         </BrowserRouter>
       </DrawerProvider>
     </AppThemeProvider>

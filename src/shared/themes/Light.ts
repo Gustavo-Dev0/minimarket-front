@@ -1,31 +1,42 @@
 import { createTheme } from '@mui/material';
-import { cyan, yellow } from '@mui/material/colors';
+import { cyan, yellow, teal } from '@mui/material/colors';
+
 
 export const LightTheme = createTheme({
     palette: {
         primary: {
-            main: yellow[700],
-            dark: yellow[800],
-            light: yellow[500],
+            main: cyan[900],
+            dark: cyan[900],
+            light: cyan[600],
             contrastText: '#ffffff',
         },
         secondary: {
-            main: cyan[500],
-            dark: cyan[400],
-            light: cyan[300],
-            contrastText: '#ffffff',
+            main: yellow[500],
+            dark: yellow[400],
+            light: yellow[300],
+            contrastText: '#000000',
         },
         background: {
             paper: '#ffffff',
-            default: '#f7f6f3'
+            default: '#f7f6f3',
+
         }
     },
     typography: {
-        allVariants: {
-            color: 'black'
+    },
+    components: {
+        MuiButton: {
+            defaultProps: {
+                // The props to change the default for.
+                onFocus: (t) => { t.target.disabled = false }
+            },
         },
-        button:{
-            color: ''
-        }
+        MuiIconButton: {
+            defaultProps: {
+                // The props to change the default for.
+                onFocus: (t) => { t.target.disabled = true },
+            },
+        },
     }
+
 });

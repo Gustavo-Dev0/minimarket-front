@@ -1,17 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow, Box, Button, useMediaQuery, Theme, Typography } from '@mui/material';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { LayoutBaseDePagina } from '../../shared/layouts';
+import { Icon, IconButton, LinearProgress, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TableRow } from '@mui/material';
+import { useEffect, useState } from 'react';
 import { ExampleService } from '../../shared/services/api/example/ExampleService';
-import { HerramientasDeDetalle, HerramientasDeListado } from '../../shared/components';
 
 
-export const ExampleTable: React.FC = () => {
+export const ProductsTable: React.FC = () => {
 
     const [rows, setRows] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const smDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
-    const mdDown = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
     useEffect(() => {
         setIsLoading(true);
@@ -31,28 +26,15 @@ export const ExampleTable: React.FC = () => {
     }, []);
 
     return (
-        <LayoutBaseDePagina
-            title='Mis proveedores'
-            buttonAdd={
-                <Button variant='contained' size={smDown ? 'small' : 'large'} 
-                    startIcon={<Icon fontSize={smDown ? 'small' : 'large'}>add_circle</Icon>} 
-                    onClick={()=>console.log("click")} >
-                    <Typography
-                        variant={smDown ? 'caption' : 'h6'}
-                    >
-                        Agregar proveedor
-                    </Typography>
-                </Button>}
-        >
-            <TableContainer component={Paper} variant="outlined" sx={{ m: 1, width: 'auto' }}>
+        <TableContainer component={Paper} variant="outlined" sx={{ m: 1, width: 'auto' }}>
                 <Table>
                     <TableHead>
                         <TableRow>
 
                             <TableCell align='center'>Id</TableCell>
                             <TableCell align='center'>Nombre</TableCell>
-                            <TableCell align='center'>Ubicacion</TableCell>
-                            <TableCell align='center'>Teléfono</TableCell>
+                            <TableCell align='center'>Precio</TableCell>
+                            <TableCell align='center'>Cantidad</TableCell>
                             <TableCell align='center'>Acciones</TableCell>
                         </TableRow>
                     </TableHead>
@@ -106,6 +88,5 @@ export const ExampleTable: React.FC = () => {
                     </TableFooter>
                 </Table>
             </TableContainer>
-        </LayoutBaseDePagina>
     );
 };

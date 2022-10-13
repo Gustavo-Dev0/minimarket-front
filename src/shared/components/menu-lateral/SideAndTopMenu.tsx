@@ -14,6 +14,8 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useAppThemeContext, useDrawerContext } from '../../contexts';
 import { Avatar, Icon, ListItemIcon, Menu, MenuItem, Tooltip, useTheme } from '@mui/material';
+import { useNavigate, useResolvedPath } from 'react-router-dom';
+import AvatarImage from '../../../assets/avatar.png'
 
 interface Props {
     /**
@@ -50,16 +52,25 @@ export const SideAndTopMenu = (props: Props) => {
         setAnchorElUser(null);
     };
 
+    const navigate = useNavigate();
+
+    const handleClick = (to: string) => {
+        navigate(to);
+        //onClick?.();
+    };
+
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center', height: '100%', display: 'flex', flexDirection: 'column', }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
-                MUI
-            </Typography>
+            <Box display='flex' flexDirection='row' flexGrow={1} padding={1} marginX={2} flex={0}>
+                <Icon fontSize='large'>assignment</Icon>
+                <Divider orientation='vertical' flexItem sx={{ flex: 1 }} />
+                <Typography variant='h6' sx={{ flex: 8 }} display='flex' flexDirection='column' justifyContent='center' >Tienda</Typography>
+            </Box>
             <Divider />
             <List style={{ flex: 1, padding: 0, display: 'flex', flexDirection: 'column', }}>
                 {navItems.map((item) => (
                     <ListItem key={item.path} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
+                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleClick(item.path)}>
                             <ListItemIcon>
                                 <Icon>{item.icon}</Icon>
                             </ListItemIcon>
@@ -88,28 +99,28 @@ export const SideAndTopMenu = (props: Props) => {
         <Box sx={{ display: 'flex', height: '100%', width: '100%' }}>
             <AppBar component="nav">
                 <Toolbar>
-                    <IconButton   
+                    <IconButton
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { sm: 'none' }, color: 'white' }}
                     >
                         <Icon>menu</Icon>
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1 }}
-                    >
-                        MUI
-                    </Typography>
+                    <Box display='flex' flexDirection='row' flexGrow={1} padding={1} marginX={2} flex={1}>
+                        <Icon fontSize='large'>assignment</Icon>
+                        <Divider orientation='vertical' flexItem sx={{ flex: 1 }} />
+                        <Divider orientation='vertical' sx={{ flex: 1 }} />
+                        <Typography variant='h6' sx={{ flex: 8 }} display='flex' flexDirection='column' justifyContent='center' >Tienda</Typography>
+                    </Box>
+                    <Box flex={1}></Box>
                     <Box sx={{ display: { xs: 'none', sm: 'block' }, marginRight: 1 }}>
                         <List style={{ display: 'flex', flexDirection: 'row', padding: 0 }}>
 
                             {navItems.map((item) => (
                                 <ListItem key={item.path} disablePadding>
-                                    <ListItemButton sx={{ textAlign: 'center' }}>
-                                        <ListItemIcon sx={{minWidth: theme.spacing(4)}}>
+                                    <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleClick(item.path)}>
+                                        <ListItemIcon sx={{ minWidth: theme.spacing(4), color: 'white' }}>
                                             <Icon>{item.icon}</Icon>
                                         </ListItemIcon>
                                         <ListItemText primary={item.label} />
@@ -118,7 +129,7 @@ export const SideAndTopMenu = (props: Props) => {
                             ))}
                             <ListItem disablePadding>
                                 <ListItemButton onClick={toggleTheme}>
-                                    <ListItemIcon sx={{minWidth: theme.spacing(4)}}>
+                                    <ListItemIcon sx={{ minWidth: theme.spacing(4), color: 'white' }}>
                                         <Icon>dark_mode</Icon>
                                     </ListItemIcon>
                                     <ListItemText primary='Toggle theme'
@@ -139,7 +150,7 @@ export const SideAndTopMenu = (props: Props) => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Aemy Sharp" src={AvatarImage} />
                             </IconButton>
                         </Tooltip>
                         <Menu
@@ -184,7 +195,7 @@ export const SideAndTopMenu = (props: Props) => {
                     {drawer}
                 </Drawer>
             </Box>
-            <Box component="main" sx={{ pX: 3, width: '100%' }}>
+            <Box component="main" sx={{ pX: 3, width: '100%' }}  marginX={{sm: 0 | 16}}>
                 {props.children}
             </Box>
         </Box>

@@ -5,10 +5,10 @@ interface ILayoutBaseDePaginaProps {
     children: React.ReactNode;
     title: string;
     toolsBar?: React.ReactNode
-
+    buttonAdd?: React.ReactNode
 }
 
-export const LayoutBaseDePagina: React.FC<ILayoutBaseDePaginaProps> = ({ children, title, toolsBar }: ILayoutBaseDePaginaProps) => {
+export const LayoutBaseDePagina: React.FC<ILayoutBaseDePaginaProps> = ({ children, title, toolsBar, buttonAdd }: ILayoutBaseDePaginaProps) => {
 
     const { toggleDrawerOpen } = useDrawerContext();
 
@@ -19,18 +19,24 @@ export const LayoutBaseDePagina: React.FC<ILayoutBaseDePaginaProps> = ({ childre
     return (
         <Box height='100%' display='flex' flexDirection='column' gap={1}>
             <Toolbar></Toolbar>
-            <Box padding={1} display='flex' gap={1} alignItems='center' height={theme.spacing(smDown ? 4 : mdDown ? 8 : 12)}>
+            <Box padding={1} display='flex' gap={1} alignItems='center' height={theme.spacing(smDown ? 4 : mdDown ? 8 : 12)} justifyContent='space-between'>
 
-                <Typography 
+                <Typography
                     variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'}
                     overflow='hidden'
                     whiteSpace='nowrap'
                     textOverflow='ellipsis'
+                    color={theme.palette.secondary.contrastText}
                 >
                     {title}
                 </Typography>
+                {buttonAdd && (
+                    <Box>
+                        {buttonAdd}
+                    </Box>
+                )}
             </Box>
-            { toolsBar && (
+            {toolsBar && (
                 <Box>
                     {toolsBar}
                 </Box>
